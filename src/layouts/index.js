@@ -15,11 +15,11 @@ const overlayMenuStyle = css({
   background: "rgba(255,255,255,0.9)",
   zIndex: "100",
   transition: "all 0.3s ease-in",
-  transform: "translateX(100vw)"
+  transform: "translateX(0vw)"
 });
 
-const inplaceMenu = css({
-  transform: "translateX(0)"
+const outOfPlaceMenu = css({
+  transform: "translateX(100vw)"
 });
 
 const Header = ({ ...props }) => (
@@ -92,19 +92,19 @@ class TemplateWrapper extends Component {
   constructor() {
     super();
     this.state = {
-      overlay: false
+      menuClosed: false
     };
   }
   menuClick = () => {
     this.setState({
-      overlay: !this.state.overlay
+      menuClosed: !this.state.menuClosed
     });
-    console.log("menu state : " + (this.state.overlay ? "open" : "closed"));
+    console.log("menu state : " + (this.state.menuClosed ? "closed" : "open"));
   };
 
   componentDidMount() {
     this.setState({
-      overlay: false
+      menuClosed: true
     });
   }
 
@@ -123,7 +123,7 @@ class TemplateWrapper extends Component {
         <Header title={"Codepaper.io"} onMenuClick={this.menuClick} />
         <div
           className={`${overlayMenuStyle} ${
-            this.state.overlay ? inplaceMenu : null
+            this.state.menuClosed ? null : outOfPlaceMenu
           }`}
         />
         <div
