@@ -96,18 +96,14 @@ class TemplateWrapper extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      overlay: false
-    });
-    console.log("menu state : " + this.state.overlay);
-  }
-
   menuClick = () => {
     this.setState({
       overlay: !this.state.overlay
     });
   };
+  componentDidUpdate() {
+    console.log("menu state : " + this.state.overlay);
+  }
 
   render() {
     const { children } = this.props;
